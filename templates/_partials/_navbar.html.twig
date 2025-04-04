@@ -1,0 +1,96 @@
+<div class="container-fluid mx-auto">
+
+	<div
+		class="row navbar-container">
+
+		<!-- SIDEBAR -->
+		<nav
+			class="navbar d-md-flex navbar-black">
+
+			<!-- Sidebar Mobile/Tablet format -->
+			<button class="sidebar-toggler d-block d-xl-none button-style mt-5 position-fixed" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar">
+				<i class="fa-solid fa-bars-staggered"></i>
+			</button>
+
+			<div class="offcanvas offcanvas-start bg-black3" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
+
+				<div class="offcanvas-header-2 bg-black2 mb-2 mt-5">
+					<button type="button" class="close-style ms-3 me-2 fs-3" data-bs-dismiss="offcanvas" aria-label="Close">
+						<i class="fa-solid fa-x"></i>
+					</button>
+					<a class="text-light fs-3" href="{{ path('home') }}">
+						<i class="fa-solid home-btn fa-house"></i>
+					</a>
+				</div>
+
+				<div
+					class="offcanvas-body px-3 py-2 bg-black2 side-container">
+
+					{# Bouton quand l'utilisateur est connecté #}
+
+					{% if is_granted('ROLE_ADMIN') %}
+
+						<ul class="navbar-nav justify-content-center mt-3 flex-grow-1 pe-3">
+							<li class="nav-item mb-4">
+								<a class="link{{ route == 'stagiaires' ? ' nav-active' }}" href="{{ path('stagiaires') }}">Stagiaires</a>
+							</li>
+
+							{# Bouton quand l'utilisateur n'est pas connecté #}
+
+							<li class="nav-item mb-4">
+								<a class="link{{ route == 'mentions_legales' ? ' nav-active' }}" href="{{ path('mentions_legales') }}">Mentions légales</a>
+							</li>
+
+						{% endif %}
+
+						{% if app.user %}
+
+							<li class="nav-item mb-4">
+								<a class="link{{ route == 'app_logout' ? ' nav-active' }}" href="{{ path('app_logout') }}">Déconnexion</a>
+							</li>
+
+						{% endif %}
+
+					</div>
+
+				</nav>
+
+				<!-- NAVBAR Only full Screen -->
+
+				<nav class="navbar-nav d-none d-xl-block mt-4 navbar-fullscreen p-0">
+
+					<ul class="navbar-nav flex-row justify-content-center d-flex flex-grow-1 pe-3">
+						<li class="nav-item me-2">
+							<a class="link{{ route == 'home' ? ' nav-active' }}" href="{{ path('home') }}">Accueil</a>
+						</li>
+
+						{# Bouton quand l'utilisateur est connecté #}
+
+						{% if is_granted('ROLE_ADMIN') %}
+
+							<li class="nav-item me-2">
+								<a class="link{{ route == 'stagiaires' ? ' nav-active' }}" href="{{ path('stagiaires') }}">Stagiaires</a>
+							</li>
+
+							{# Bouton quand l'utilisateur n'est pas connecté #}
+
+						{% endif %}
+
+						<li class="nav-item me-2">
+							<a class="link{{ route == 'mentions_legales' ? ' nav-active' }}" href="{{ path('mentions_legales') }}">Mentions légales</a>
+						</li>
+
+						{% if app.user %}
+
+							<li class="nav-item">
+								<a class="link{{ route == 'app_logout' ? ' nav-active' }}" href="{{ path('app_logout') }}">Déconnexion</a>
+							</li>
+
+						</ul>
+
+					{% endif %}
+				</nav>
+
+			</div>
+
+		</div>

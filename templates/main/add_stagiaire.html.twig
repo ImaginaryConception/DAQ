@@ -1,0 +1,25 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Ajout d'un stagiaire
+{% endblock %}
+
+{% block header %}Ajout
+{% endblock %}
+
+{% block body %}
+
+	<div class="mt-4"></div>
+
+	{{ form_start( add_stagiaire_form ) }}
+
+	{{ form_errors( add_stagiaire_form ) }}
+
+	{{ form_row( add_stagiaire_form.firstname ) }}
+
+	{{ form_row( add_stagiaire_form.lastname ) }}
+
+	{{ form_row( add_stagiaire_form.save ) }}
+
+	{{ form_end( add_stagiaire_form ) }}
+
+{% endblock %}

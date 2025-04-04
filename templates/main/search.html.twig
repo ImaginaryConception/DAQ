@@ -1,0 +1,71 @@
+{% extends 'base.html.twig' %}
+
+{% set query = app.request.query.get('search') %}
+
+{% block title %}Résultat
+{% endblock %}
+
+{% block header %}Recherche
+{% endblock %}
+
+{% block body %}
+
+	<div class="row">
+
+		<div class="col-12 col-md-8 mx-auto">
+
+			<div class="row">
+				<p class="col-12 my-5 nb-article text-light text-center">{{ articles.getTotalItemCount() }}
+					stagiaires trouvés
+					{% if query == '' %}sur une recherche vide.
+					{% else %}
+						pour "{{ query }}"</p>
+				{% endif %}
+			</div>
+
+			{% if articles is not empty %}
+
+				<div class="row">
+
+					<div class="col-12 text-center">
+
+						<div class="d-flex mx-auto justify-content-center">
+							<form method="GET" action="{{ path('search') }}">
+								<input id="search-book-first" type="text" placeholder="Rechercher" name="search" aria-label="search" class="form-control">
+								<button type="submit" class="bg-black3">
+									<i class="fs-2 text-light fa-solid fa-magnifying-glass"></i>
+								</button>
+							</form>
+						</div>
+
+					</div>
+
+				</div>
+
+			{% endif %}
+
+			{% for article in articles %}
+
+				<div id="global-view" class="w-30 pt-3 mt-4 mx-auto">
+
+					<p class="text-light fs-5 text-center">Prénom : {{ article.firstname }}</p>
+					<p class="text-light fs-5 text-center">Nom : {{ article.lastname }}</p>
+					<p class="text-light fs-5 text-center">Statut : {% if article.status is empty %}Non défini{% else %}{{ article.status }}{% endif %} </p>
+
+					<div class="d-flex mt-4 mx-auto flex-column w-50 text-center flex-sm-row justify-content-center mb-5">
+
+						<a class="me-sm-3 mx-auto mx-sm-0 link text-decoration-none bg-black6 mb-3 p-2" href="{{ path('edit_user', {'id': article.id }) }}">Modifier</a>
+
+						<a class="me-sm-3 mx-auto mx-sm-0 link text-decoration-none bg-black6 mb-3 p-2" href="{{ path('remove_user', {'id': article.id }) }}">Retirer</a>
+
+					</div>
+
+				</div>
+
+			{% endfor %}
+
+		</div>
+
+	</div>
+
+{% endblock %}

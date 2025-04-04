@@ -1,0 +1,17 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Erreur 500{% endblock %}
+
+{% block body %}
+
+    <h2 class="text-center text-danger">Erreur interne du serveur.</h2>
+    <h3 class="text-center text-light">Contactez-nous pour obtenir de l'aide ou retournez à l'accueil.</h3>
+    <div class="d-flex justify-content-center">
+        <a class="text-center text-light mt-4" href="mailto:support@imaginary-conception.com">support@imaginary-conception.com</a>
+    </div>
+    <div class="d-flex justify-content-center">
+        <a class="register mt-4" href="{{ path('home') }}">Accueil</a>
+    </div>
+</div>
+
+{% endblock %}

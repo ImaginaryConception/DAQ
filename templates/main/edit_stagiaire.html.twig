@@ -1,0 +1,27 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Modifier un stagiaire
+{% endblock %}
+
+{% block header %}Modifier
+{% endblock %}
+
+{% block body %}
+
+	<div class="mt-4"></div>
+
+	{{ form_start( edit_stagiaire_form ) }}
+
+	{{ form_errors( edit_stagiaire_form ) }}
+
+	{{ form_row( edit_stagiaire_form.firstname ) }}
+
+	{{ form_row( edit_stagiaire_form.lastname ) }}
+
+	{{ form_row( edit_stagiaire_form.status ) }}
+
+	{{ form_row( edit_stagiaire_form.save ) }}
+
+	{{ form_end( edit_stagiaire_form ) }}
+
+{% endblock %}

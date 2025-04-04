@@ -1,0 +1,37 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Connexion{% endblock %}
+{% block header %}Connexion{% endblock %}
+
+{% block body %}
+<form method="post">
+
+    {% if app.user %}
+        <div class="mb-3">
+            Vous êtes connecté en tant que {{ app.user.userIdentifier }}, <a href="{{ path('app_logout') }}">Se déconnecter</a>
+        </div>
+    {% endif %}
+
+    <div class="mt-4"></div>
+
+    <div>
+        <input type="email" value="{{ last_username }}" placeholder="Adresse e-mail *" name="email" id="inputEmail" class="" autocomplete="email" autofocus>
+    </div>
+    <div>
+        <input type="password" name="password" id="inputPassword" placeholder="Mot de passe *" class="" autocomplete="current-password">
+    </div>
+    <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
+
+    {# <div class="d-flex justify-content-center mb-3">
+        <a class="link text-center" aria-current="page" href="{{ path('app_forgot_password_request') }}">Mot de passe oublié?</a>
+    </div> #}
+
+    {% if error %}
+        <div class="text-center mb-3 text-light">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+    {% endif %}
+
+    <button class="link mx-auto btn-save d-flex justify-content-center" type="submit">
+        Se connecter
+    </button>
+</form>
+{% endblock %}

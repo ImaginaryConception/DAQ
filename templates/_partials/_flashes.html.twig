@@ -1,0 +1,26 @@
+{% if app.session.flashBag.has('success') or app.session.flashBag.has('error') or app.session.flashBag.has('info') %}
+
+	{% for message in app.flashes('success') %}
+
+		<div class="flashes alert text-success bg-black5 fs-3 text-center col-12 my-3 mt-1" role="alert">
+			{{ message }}
+		</div>
+	{% endfor %}
+
+	{% for message in app.flashes('error') %}
+
+		<div class="flashes alert text-danger fs-3 text-center bg-black5 col-12 my-3 mt-1" role="alert">
+			{{ message }}
+		</div>
+
+	{% endfor %}
+
+	{% for message in app.flashes('info') %}
+
+		<div class="flashes alert text-light fs-3 text-center bg-black5 col-12 my-3 mt-1" role="alert">
+			{{ message }}
+		</div>
+
+	{% endfor %}
+
+{% endif %}

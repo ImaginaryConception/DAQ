@@ -1,0 +1,47 @@
+{% set route = app.request.attributes.get('_route')%}
+<!DOCTYPE html>
+<html lang="fr">
+	<head>
+		<!--[if lt IE 9]>
+			<script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+		<![endif]-->
+		<meta charset="UTF-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>{% block title %}{% endblock %} - DAQ 2.0</title>
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css">
+		<link rel="stylesheet" href="{{ asset('CSS/bootstrap.min.css') }}">
+		<link rel="stylesheet" href="{{ asset('CSS/styles.css') }}">
+		<script src="{{ asset(('JS/bootstrap.bundle.min.js')) }}" defer></script>
+		<script src="https://code.jquery.com/jquery-3.6.0.min.js" defer></script>
+		<script src="{{ asset(('JS/script.js')) }}" defer></script>
+	</head>
+	<body>
+
+	  	<div>
+     		<div class="wave"></div>
+     		<div class="wave"></div>
+     		<div class="wave"></div>
+  		</div>
+
+		<img id="logo" class="d-none d-md-block" src="{{ asset('Images/daq.png') }}">
+
+		<div class="container-fluid">
+
+			{% include '_partials/_navbar.html.twig' %}
+
+			<div class="row">
+
+				<header class="col-12">
+					<h1 class="text-light fs-6 text-center" id="title"> {% block header %}{% endblock %}</h1>
+				</header>
+
+				</div>
+
+				{% include '_partials/_flashes.html.twig' %}
+
+				{% block body %}{% endblock %}
+
+			</div>
+		</body>
+	</html>

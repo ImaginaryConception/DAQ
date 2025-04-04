@@ -1,0 +1,27 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Accueil
+{% endblock %}
+
+{% block body %}
+
+	{% if countUsers == 0 %}
+		<div class="d-flex justify-content-center">
+			<a class="register{{ route == 'app_register' ? ' nav-active2' }}" href="{{ path('app_register') }}">Inscription</a>
+		</div>
+	{% elseif countUsers > 0 and not app.user %}
+		<li class="d-flex justify-content-center">
+			<a class="register{{ route == 'app_login' ? ' nav-active2' }}" href="{{ path('app_login') }}">Connexion</a>
+		</li>
+	{% endif %}
+
+	{% if app.user %}
+		<div class="d-flex mt-4 flex-column flex-md-row justify-content-center">
+			<a class="me-md-2 me-0 mb-3 mb-md-0 register2{{ route == 'appel' ? ' nav-active2' }}" href="{{ path('appel') }}">Faire l'appel</a>
+			<a class="me-md-2 me-0 register2{{ route == 'appel' ? ' nav-active2' }}" href="{{ path('reset') }}">Réinitialiser et refaire l'appel</a>
+		</div>
+	{% endif %}
+
+	<div class="mb-6"></div>
+
+{% endblock %}

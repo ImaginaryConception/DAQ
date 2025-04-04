@@ -1,0 +1,18 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Réinitialisation{% endblock %}
+{% block header %}Réinitialisation{% endblock %}
+
+{% block body %}
+
+    <div class="mt-6"></div>
+
+    {{ form_start(resetForm) }}
+
+    {{ form_row(resetForm.plainPassword) }}
+
+    {{ form_errors(resetForm) }}
+
+    {{ form_end(resetForm) }}
+
+{% endblock %}

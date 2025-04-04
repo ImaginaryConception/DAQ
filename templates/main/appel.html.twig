@@ -1,0 +1,26 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Appel
+{% endblock %}
+
+{% block body %}
+
+	{% set firstStagiaireDisplayed = false %}
+
+	{% for stagiaire in stagiaires %}
+		{% if stagiaire.status == '' and not firstStagiaireDisplayed %}
+			{% set firstStagiaireDisplayed = true %}
+			<p class="text-light fs-1 mt-5 text-center">{{ stagiaire.lastname }} {{ stagiaire.firstname }}</p>
+			<div class="flex-column d-flex justify-content-center flex-sm-row">
+				<a class="link01 bg-success me-sm-2 mt-2 mt-ms-0" href="{{ path('stagiaire_present', {'id': stagiaire.id }) }}">Présent</a>
+				<a class="link01 bg-danger me-sm-2 mt-2 mt-ms-0" href="{{ path('stagiaire_absent', {'id': stagiaire.id }) }}">Absent</a>
+				<a class="link01 bg-secondary me-sm-2 mt-2 mt-ms-0" href="{{ path('stagiaire_en_demarche', {'id': stagiaire.id }) }}">En démarche</a>
+				<a class="link01 bg-primary me-sm-2 mt-2 mt-ms-0" href="{{ path('stagiaire_en_stage', {'id': stagiaire.id }) }}">En stage</a>
+				<a class="link01 bg-info mt-2 mt-ms-0" href="{{ path('stagiaire_en_foad', {'id': stagiaire.id }) }}">FOAD</a>
+			</div>
+		{% endif %}
+	{% endfor %}
+
+	<div class="mb-6"></div>
+
+{% endblock %}
